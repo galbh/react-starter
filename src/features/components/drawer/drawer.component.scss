@@ -1,0 +1,58 @@
+@import '../../../../assets/scss/variables.scss';
+
+.drawer{
+    position: absolute;
+    .header{
+        background: $bg-secondary;
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+        height: 65px;
+        display: flex;
+        align-items: flex-end;                    
+        .userInfo{
+            overflow: hidden;
+            padding: 14px;
+            line-height: 20px;
+            .name{
+                font-weight: 600;
+                @extend .textControl;
+                font-size: 16px;
+            }
+            .email{
+                @extend .textControl;
+                font-size: 13px;
+                font-weight: 200;
+            }
+        }        
+    }
+    .listItem{
+        text-transform: capitalize;
+        color: $text-color;
+        font-size: 13px!important;
+        button svg{
+            fill: $text-color-dimmed!important;
+        }
+    }
+    .activeListItem .listItem, .activeListItem{
+        background: rgba(160, 160, 160, 0.18)!important;
+        svg{
+            fill: $solar-edge-color!important;
+        }
+    }
+    a{
+        text-decoration: none;
+    }
+}
+
+.textControl{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+:global{
+    .container[dir=rtl]{
+        .main-menu svg{
+            right: 4px;
+        }
+    }
+}
