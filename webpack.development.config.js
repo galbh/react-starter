@@ -9,9 +9,6 @@ const config = {
 
   entry: [
     'babel-polyfill',
-    'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:8082',
-    'webpack/hot/only-dev-server',
     '../assets/scss/main.scss',
     './main.jsx'
   ],
@@ -71,7 +68,6 @@ const config = {
         }
       }
     }),
-    new webpack.optimize.ModuleConcatenationPlugin(),
     new ExtractTextPlugin({ filename: './styles/style.css', disable: false, allChunks: true }),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({

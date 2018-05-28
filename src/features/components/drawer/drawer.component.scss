@@ -1,58 +1,67 @@
 @import '../../../../assets/scss/variables.scss';
 
-.drawer{
-    position: absolute;
-    .header{
-        background: $bg-secondary;
-        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
-        height: 65px;
-        display: flex;
-        align-items: flex-end;                    
-        .userInfo{
-            overflow: hidden;
-            padding: 14px;
-            line-height: 20px;
-            .name{
-                font-weight: 600;
-                @extend .textControl;
-                font-size: 16px;
-            }
-            .email{
-                @extend .textControl;
-                font-size: 13px;
-                font-weight: 200;
-            }
-        }        
-    }
-    .listItem{
-        text-transform: capitalize;
-        color: $text-color;
-        font-size: 13px!important;
-        button svg{
-            fill: $text-color-dimmed!important;
-        }
-    }
-    .activeListItem .listItem, .activeListItem{
-        background: rgba(160, 160, 160, 0.18)!important;
-        svg{
-            fill: $solar-edge-color!important;
-        }
-    }
-    a{
-        text-decoration: none;
-    }
+$drawer-width: 120px;
+$primary-dark: #000;
+$primary-icon-color: gray;
+$font-size-medium: 14px;
+$transition-rate: 0.4s;
+$primary-background-color: pink;
+$primary-selected-text-color: red;
+
+.container, .container .drawer {
+  width: $drawer-width;
+  height: 100%;
 }
 
-.textControl{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+.container{
+  
+  > div{
+    border: none;
+  }
+
+  .drawer{    
+    background: $primary-dark;  
+    display: inline-table;
+    width: 100%;
+
+    > div{
+      border-right: none;    
+    }
+  
+    li{
+      padding: 0;
+      color: $primary-icon-color;
+      font-size: $font-size-medium;
+      text-transform: uppercase;
+      height: 100px;
+      display: flex;
+      flex-direction: column;
+      transition: $transition-rate;
+      
+      img{
+        max-width: 50px;
+      }
+    }
+    
+    .active > li{
+      background: $primary-background-color;
+      color: $primary-selected-text-color;
+    }
+  }
+  
 }
 
-:global{
-    .container[dir=rtl]{
-        .main-menu svg{
-            right: 4px;
-        }
+@media (max-width: $mobile-width) {
+  .container, .container > div:nth-child(2){
+    width: 80%!important;
+  }
+
+  li{
+    flex-direction: row!important;
+    height: 55px!important;
+    img{
+      width: 50px;
+      margin-top: -10px;
     }
+  }
 }

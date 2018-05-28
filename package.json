@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --port 8082 --progress --colors",
+    "start": "webpack-dev-server --config webpack.development.config.js --port 8082 --progress --colors",
     "build": "cross-env npm run clean && webpack --config webpack.production.config.js --progress --profile --colors",
     "lint": "eslint **/*.js --fix && eslint **/*.jsx --fix",
     "preinstall": "npm install -g karma-cli",
@@ -12,6 +12,7 @@
     "clean": "rimraf dist"
   },
   "dependencies": {
+    "@material-ui/core": "1.1.0",
     "babel-polyfill": "6.26.0",
     "body-parser": "1.18.2",
     "es6-promise": "4.1.1",
@@ -24,12 +25,11 @@
     "i18next-resource-store-loader": "0.1.2",
     "i18next-xhr-backend": "1.5.0",
     "isomorphic-fetch": "2.2.1",
-    "material-ui": "0.20.0",
     "moment": "2.22.1",
     "prop-types": "15.6.0",
     "rc-slider": "8.6.1",
-    "react": "16.0.0",
-    "react-dom": "16.0.0",
+    "react": "16.3.0",
+    "react-dom": "16.3.0",
     "react-i18next": "7.1.1",
     "react-redux": "5.0.6",
     "react-router-dom": "4.2.2",

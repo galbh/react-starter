@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import LogoSrc from '../../../../assets/img/SolarEdge_logo.png';
+import LogoSrc from '../../../../assets/img/logo.png';
 import styles from './logo.component.scss';
 
 const LogoComponent = props => (

@@ -1,38 +1,46 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import propTypes from 'prop-types';
 import styles from './default-layout.page.scss';
 import HeaderComponent from '../../features/components/header/header.component.jsx';
+import userModel from '../../common/state/auth/auth.models';
 
-const DefaultLayout = ({ render: Component, ...rest }) => ({
-  render () {
-    const { loggedInUser, path, getTitle } = this.props;
-
-    return (
-      loggedInUser && !loggedInUser.utilityId && path !== '/'
-        ? <Redirect to="/" />
-        : <Route
-          {...rest}
-          render={matchProps => (
-            <div>
-              <HeaderComponent path={rest.path} title={getTitle(path)} />
-              <div className={styles.wrapper}>
-                {this.props.loggedInUser && <Component {...matchProps} t={rest.t} />}
-              </div>
-            </div>
-          )}
-        />
-
-    );
-  }
-});
+const DefaultLayout = (props) => {
+  const {
+    loggedInUser, path, component
+  } = props;
+  const Component = component;
+  return (
+    <Route
+      path={path}
+      render={matchProps => (
+        <div className={styles.container}>
+          <HeaderComponent
+            path={path}
+            loggedInUser={loggedInUser}
+          />
+          <div className={styles.wrapper}>
+            <Component {...matchProps} />
+          </div>
+        </div>
+      )}
+    />
+  );
+};
 
 function mapStateToProps (state) {
   return {
-    loggedInUser: state.auth.loggedInUser,
-    getTitle: state.shared.getTitle
+    loggedInUser: state.auth.loggedInUser
   };
 }
 
-export default translate()(connect(mapStateToProps)(DefaultLayout));
+DefaultLayout.propTypes = {
+  loggedInUser: propTypes.shape(userModel),
+  path: propTypes.string.isRequired,
+  component: propTypes.func.isRequired
+};
+
+DefaultLayout.defaultProps = { loggedInUser: null };
+
+export default connect(mapStateToProps)(DefaultLayout);
