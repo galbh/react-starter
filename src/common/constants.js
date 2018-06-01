@@ -4,10 +4,8 @@ export const SUCCESS_SUFFIX = '_SUCCESS';
 
 export const routes = {
   empty: '/',
-  events: '/events',
-  dashboard: '/dashboard',
-  alerts: '/alerts',
-  vpp: '/vpp'
+  home: '/home',
+  about: '/about'
 };
 
 export const mobileMaxWidth = 1023;

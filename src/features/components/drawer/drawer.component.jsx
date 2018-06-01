@@ -21,13 +21,20 @@ const DrawerComponent = (props) => {
     >
       <div className={styles.drawer}>
 
-        <LogoComponent />
+        <div className={styles.logo}><LogoComponent /></div>
 
         <DrawerLink
-          to={routes.empty}
+          to={routes.home}
           iconSrc={ImgSrc}
-          label={props.t('DASHBOARD')}
-          className={getClassName(routes.dashboard)}
+          label={props.t('HOME_PAGE')}
+          className={getClassName(routes.empty)}
+        />
+
+        <DrawerLink
+          to={routes.about}
+          iconSrc={ImgSrc}
+          label={props.t('ABOUT_PAGE')}
+          className={getClassName(routes.about)}
         />
 
       </div>
@@ -41,7 +48,7 @@ const DrawerLink = connect()(props => (
     to={props.to}
   >
     <MenuItem onClick={() => props.dispatch(new CloseDrawerAction())}>
-      <img src={props.iconSrc} alt={`${props.label} link`} />
+      <img className={styles.icon} src={props.iconSrc} alt={`${props.label} link`} />
       <span>{props.label}</span>
     </MenuItem>
   </NavLink>

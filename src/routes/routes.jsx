@@ -6,6 +6,7 @@ import App from '../app.component.jsx';
 import DefaultLayout from './default/default-layout.page.jsx';
 import i18n from '../../i18n';
 import HomePage from '../features/pages/Home/home.page.jsx';
+import AboutPage from '../features/pages/About/about.page.jsx';
 
 const Root = ({ store }) => ({
   render () {
@@ -15,7 +16,8 @@ const Root = ({ store }) => ({
           <Router>
             <App>
               <Switch>
-                <DefaultLayout exact path="/" component={HomePage} />
+                <DefaultLayout exact path="/home" component={HomePage} />
+                <DefaultLayout exact path="/about" component={AboutPage} />
               </Switch>
             </App>
           </Router>
