@@ -1,9 +1,9 @@
 {
-  "name": "derm",
+  "name": "react-starter",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --config webpack.development.config.js --port 8082 --progress --colors",
+    "start": "webpack-dev-server --config webpack.development.config.js --port 8080 --progress --colors",
     "build": "cross-env npm run clean && webpack --config webpack.production.config.js --progress --profile --colors",
     "lint": "eslint **/*.js --fix && eslint **/*.jsx --fix",
     "preinstall": "npm install -g karma-cli",

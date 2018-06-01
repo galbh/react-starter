@@ -16,8 +16,8 @@ const Root = ({ store }) => ({
           <Router>
             <App>
               <Switch>
-                <DefaultLayout exact path="/home" component={HomePage} />
-                <DefaultLayout exact path="/about" component={AboutPage} />
+                <DefaultLayout path="/home" component={HomePage} />
+                <DefaultLayout path="/about" component={AboutPage} />
               </Switch>
             </App>
           </Router>

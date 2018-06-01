@@ -21,10 +21,12 @@ $drawer-bg-color: rgba(232, 212, 212, 0.58);
     height: 100%;
     background: $drawer-bg-color;
 
-    > div{
+    .logo{
       border-right: none;
       display: flex;
       justify-content: center;
+      height: 60px;
+      background: #fff;
     }
   
     a{
@@ -52,6 +54,7 @@ $drawer-bg-color: rgba(232, 212, 212, 0.58);
     .active > li{
       background: $bg-secondary;
       color: $primary-selected-text-color;
+      font-weight: bold;
     }
   }
   

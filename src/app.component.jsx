@@ -19,11 +19,14 @@ class App extends Component {
   }
 
   initiateData () {
-    this.props.dispatch(new OpenDialogAction('hello world'), <div>hello world</div>);
+    this.props.dispatch(new OpenDialogAction('react starter', 'hello from app.component.jsx'));
   }
 
   render () {
-    const { isRtl, loading, children } = this.props;
+    const {
+      isRtl, loading, children, isDialogRender, dialogComponent,
+      dialogTitle, dialogType, isDrawerRender, location
+    } = this.props;
     return (
       <div
         dir={isRtl ? 'rtl' : 'ltr'}
@@ -37,16 +40,17 @@ class App extends Component {
 
         {/* Dialog */}
         <DialogComponent
-          open={this.props.isDialogRender}
-          title={this.props.dialogTitle}
-          type={this.props.dialogType}
-          component={this.props.dialogComponent}
+          open={isDialogRender}
+          title={dialogTitle}
+          type={dialogType}
+          text={dialogComponent}
         />
 
         {/* Drawer menu */}
         <DrawerComponent
-          open={this.props.isDrawerRender}
-          openSecondary={this.props.isRtl}
+          open={isDrawerRender}
+          openSecondary={isRtl}
+          currentRoute={location.pathname}
         />
       </div>
     );

@@ -27,7 +27,7 @@ const DrawerComponent = (props) => {
           to={routes.home}
           iconSrc={ImgSrc}
           label={props.t('HOME_PAGE')}
-          className={getClassName(routes.empty)}
+          className={getClassName(routes.home)}
         />
 
         <DrawerLink
