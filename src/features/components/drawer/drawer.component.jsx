@@ -1,74 +1,72 @@
 import React from 'react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { connect } from 'react-redux';
 import { Drawer, MenuItem } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
 import styles from './drawer.component.scss';
-import { routes } from '../../../common/constants';
+import { ROUTES } from '../../../common/constants';
 import LogoComponent from '../logo/logo.component.jsx';
 import ImgSrc from '../../../../assets/img/logo.png';
-import { CloseDrawerAction } from '../../../common/state/drawer/drawer.actions';
 
-const DrawerComponent = (props) => {
-  const getClassName = route => (props.currentRoute === route ? styles.active : null);
-  return (
-    <Drawer
-      open={props.open}
-      className={styles.container}
-      variant="temporary"
-      onClose={() => props.dispatch(new CloseDrawerAction())}
-    >
-      <div className={styles.drawer}>
+const DrawerComponent = ({
+  closeDrawer, open, currentRoute, t
+}) => (
+  <Drawer
+    open={open}
+    className={styles.container}
+    variant="temporary"
+    onClose={() => closeDrawer()}
+  >
+    <div className={styles.drawer}>
 
-        <div className={styles.logo}><LogoComponent /></div>
+      <div className={styles.logo}><LogoComponent /></div>
 
-        <DrawerLink
-          to={routes.home}
-          iconSrc={ImgSrc}
-          label={props.t('HOME_PAGE')}
-          className={getClassName(routes.home)}
-        />
+      <DrawerLink
+        to={ROUTES.home}
+        iconSrc={ImgSrc}
+        label={t('HOME_PAGE')}
+        closeDrawer={closeDrawer}
+      />
 
-        <DrawerLink
-          to={routes.about}
-          iconSrc={ImgSrc}
-          label={props.t('ABOUT_PAGE')}
-          className={getClassName(routes.about)}
-        />
+      <DrawerLink
+        to={ROUTES.about}
+        iconSrc={ImgSrc}
+        label={t('ABOUT_PAGE')}
+        closeDrawer={closeDrawer}
+      />
 
-      </div>
-    </Drawer>
-  );
-};
+    </div>
+  </Drawer>
+);
 
-const DrawerLink = connect()(props => (
+const DrawerLink = ({
+  closeDrawer, iconSrc, label, to
+}) => (
   <NavLink
     activeClassName={styles.active}
-    to={props.to}
+    to={to}
   >
-    <MenuItem onClick={() => props.dispatch(new CloseDrawerAction())}>
-      <img className={styles.icon} src={props.iconSrc} alt={`${props.label} link`} />
-      <span>{props.label}</span>
+    <MenuItem onClick={() => closeDrawer()}>
+      <img className={styles.icon} src={iconSrc} alt={`${label} link`} />
+      <span>{label}</span>
     </MenuItem>
   </NavLink>
-));
+);
 
 DrawerLink.propTypes = {
-  to: propTypes.string.isRequired,
-  iconSrc: propTypes.string.isRequired,
-  label: propTypes.string.isRequired
+  to: PropTypes.string.isRequired,
+  iconSrc: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  closeDrawer: PropTypes.func.isRequired
 };
-
-DrawerLink.defaultProps = { className: '' };
 
 DrawerComponent.propTypes = {
-  currentRoute: propTypes.string,
-  t: propTypes.func.isRequired,
-  open: propTypes.bool.isRequired,
-  dispatch: propTypes.func.isRequired
+  currentRoute: PropTypes.string,
+  t: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  closeDrawer: PropTypes.func.isRequired
 };
 
-DrawerComponent.defaultProps = { currentRoute: routes.empty };
+DrawerComponent.defaultProps = { currentRoute: ROUTES.empty };
 
-export default connect()(translate()(DrawerComponent));
+export default translate()(DrawerComponent);
