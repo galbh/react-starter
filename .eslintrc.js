@@ -26,6 +26,12 @@ module.exports = {
         }
       }]
     },
+    "overrides": [{
+        "files": ["*.page.jsx"],
+        "rules": {
+            "react/prop-types": 0
+        }
+    }],
     globals: {
       "API_HOST": true
     }
