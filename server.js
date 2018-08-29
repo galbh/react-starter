@@ -17,7 +17,7 @@ app.use('/api', api);
 app.use('/internal', internalApi);
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(`${__dirname}/dist/private_path.html`));
+  res.sendFile(path.join(`${__dirname}/dist/index.html`));
 });
 
 const port = process.env.PORT || '3000';
