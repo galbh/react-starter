@@ -37,7 +37,7 @@ class App extends Component {
     startLoader();
     fetchLoggedInUser()
       .then(() => stopLoader())
-      .then(() => openDialog('react starter', 'hello from app.component.jsx'))
+      .then(() => openDialog('react starter', 'hello from app.page.jsx'))
   }
 
   render () {
