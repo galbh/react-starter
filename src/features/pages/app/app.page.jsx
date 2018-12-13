@@ -23,7 +23,7 @@ class App extends Component {
     }
 
     // set site title on route change
-    setTitle(location.pathname);
+    setTitle(ROUTES.home);
     history.listen(path => setTitle(path.pathname));
   }
 
