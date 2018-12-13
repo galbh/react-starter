@@ -5,7 +5,7 @@ const router = express.Router();
 // Mock data
 const loggedInUser = require('../mock/loggedInUser.json');
 
-const serverResponseTime = 200;
+const serverResponseTime = 1000;
 
 // Simulate server delayed response
 function send (res, data) {
@@ -19,11 +19,6 @@ function send (res, data) {
  */
 
 // Get Logged in user
-router.get('/internal/user-info', (req, res) => send(res.status(200), loggedInUser));
-
-// Sign out
-router.post('/internal/commands/sign-out', (req, res) => {
-  send(res.status(200));
-});
+router.get('/user-info', (req, res) => send(res.status(200), loggedInUser));
 
 module.exports = router;

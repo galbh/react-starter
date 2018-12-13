@@ -3,43 +3,54 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const baseDir = resolve(__dirname, '../');
+
 const config = {
   devtool: 'cheap-module-source-map',
 
   entry: [
     'babel-polyfill',
-    './main.jsx',
-    '../assets/scss/main.scss'
+    resolve(baseDir, 'assets', 'scss', 'main.scss'),
+    resolve(baseDir, 'src', 'main.jsx')
   ],
 
-  context: resolve(__dirname, 'src'),
+  context: resolve(baseDir, 'src'),
 
   output: {
     filename: 'bundle.js',
-    path: resolve(__dirname, 'dist'),
+    path: resolve(baseDir, 'dist'),
     publicPath: ''
   },
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: `${__dirname}/src/index.html`,
+      template: resolve(baseDir, 'src', 'index.html'),
       filename: 'index.html',
-      favicon: resolve(__dirname, 'assets/img/favicon.png'),
+      favicon: resolve(baseDir, 'assets', 'img', 'favicon.png'),
       inject: 'body'
     }),
+
     new webpack.optimize.OccurrenceOrderPlugin(),
+
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       debug: false
     }),
+
     new webpack.optimize.UglifyJsPlugin({
       beautify: false
     }),
-    new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') } }),
+
     new webpack.DefinePlugin({
+      'process.env': { NODE_ENV: JSON.stringify('production') },
       API_HOST: JSON.stringify('')
     }),
-    new ExtractTextPlugin({ filename: './styles/style.css', disable: false, allChunks: true })
+
+    new ExtractTextPlugin({
+      filename: './styles/style.css',
+      disable: false,
+      allChunks: true
+    })
   ],
 
   module: {
@@ -49,7 +60,7 @@ const config = {
         loaders: [
           'babel-loader'
         ],
-        exclude: /node_modules/
+        exclude: resolve(baseDir, 'node_modules')
       },
       {
         test: /\.css$/,
@@ -57,7 +68,7 @@ const config = {
       },
       {
         test: /\.scss$/,
-        exclude: /node_modules/,
+        exclude: resolve(baseDir, 'node_modules'),
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [

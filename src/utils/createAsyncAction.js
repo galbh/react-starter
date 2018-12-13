@@ -1,7 +1,6 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
-import { STARTED_SUFFIX, SUCCESS_SUFFIX, FAILED_SUFFIX } from './common/constants';
-import { OpenDialogAction } from './common/state/dialog/dialog.actions';
-import { StopLoaderAction } from './common/state/shared/shared.actions';
+import { STARTED_SUFFIX, SUCCESS_SUFFIX, FAILED_SUFFIX } from '../common/constants';
+import { OpenDialogAction } from '../common/state/dialog/dialog.actions';
+import { StopLoaderAction } from '../common/state/shared/shared.actions';
 
 export default function createAsyncAction (type, fn, disableLoader) {
   return (...args) => async (dispatch, getState) => {

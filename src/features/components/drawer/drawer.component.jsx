@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { Drawer, MenuItem } from '@material-ui/core';
+import { Drawer, MenuItem, ExpansionPanel, ListItemText, ListItem, List, ExpansionPanelSummary } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
 import styles from './drawer.component.scss';
 import { ROUTES } from '../../../common/constants';
@@ -9,15 +9,16 @@ import LogoComponent from '../logo/logo.component.jsx';
 import ImgSrc from '../../../../assets/img/logo.png';
 
 const DrawerComponent = ({
-  closeDrawer, open, currentRoute, t
+  closeDrawer, open, languages, t, language, onChangeLanguage, isRtl
 }) => (
   <Drawer
     open={open}
     className={styles.container}
     variant="temporary"
-    onClose={() => closeDrawer()}
+    anchor={isRtl ? 'right' : 'left'}
+    onClose={closeDrawer}
   >
-    <div className={styles.drawer}>
+    <div className={isRtl ? `${styles.rtl} ${styles.drawer}` : styles.drawer}>
 
       <div className={styles.logo}><LogoComponent /></div>
 
@@ -34,6 +35,28 @@ const DrawerComponent = ({
         label={t('ABOUT_PAGE')}
         closeDrawer={closeDrawer}
       />
+
+      {/* Language Switcher */}
+      <ExpansionPanel style={{ margin: 0, background: 'inherit' }}>
+        <ExpansionPanelSummary>{t('LANGUAGES')}</ExpansionPanelSummary>
+        <List>
+          {
+            Object.keys(languages).map(l => (
+              <ListItem
+                key={l}
+                button
+                className={language === languages[l]
+                  ? `${styles.selected} ${styles.listItem}`
+                  : styles.listItem
+                }
+                onClick={() => onChangeLanguage(languages[l])}
+              >
+                <ListItemText primary={l} />
+              </ListItem>
+            ))
+          }
+        </List>
+      </ExpansionPanel>
 
     </div>
   </Drawer>
@@ -61,12 +84,13 @@ DrawerLink.propTypes = {
 };
 
 DrawerComponent.propTypes = {
-  currentRoute: PropTypes.string,
   t: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
-  closeDrawer: PropTypes.func.isRequired
+  closeDrawer: PropTypes.func.isRequired,
+  onChangeLanguage: PropTypes.func.isRequired,
+  languages: PropTypes.shape({ [PropTypes.string]: PropTypes.string }).isRequired,
+  language: PropTypes.string.isRequired,
+  isRtl: PropTypes.bool.isRequired
 };
-
-DrawerComponent.defaultProps = { currentRoute: ROUTES.empty };
 
 export default translate()(DrawerComponent);

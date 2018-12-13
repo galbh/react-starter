@@ -4,16 +4,18 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const baseDir = resolve(__dirname, '../');
+
 const config = {
   devtool: 'cheap-module-eval-source-map',
 
   entry: [
     'babel-polyfill',
-    '../assets/scss/main.scss',
-    './main.jsx'
+    resolve(baseDir, 'assets', 'scss', 'main.scss'),
+    resolve(baseDir, 'src', 'main.jsx')
   ],
 
-  context: resolve(__dirname, 'src'),
+  context: resolve(baseDir, 'src'),
 
   devServer: {
     hot: true,
@@ -27,7 +29,7 @@ const config = {
         loaders: [
           'babel-loader'
         ],
-        exclude: /node_modules/
+        exclude: resolve(baseDir, 'node_modules')
       },
       {
         test: /\.css$/,
@@ -35,7 +37,7 @@ const config = {
       },
       {
         test: /\.scss$/,
-        exclude: /node_modules/,
+        exclude: resolve(baseDir, 'node_modules'),
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -63,19 +65,27 @@ const config = {
       test: /\.js$/,
       options: {
         eslint: {
-          configFile: resolve(__dirname, '.eslintrc.js'),
+          configFile: resolve(baseDir, '.eslintrc.js'),
           cache: false
         }
       }
     }),
-    new ExtractTextPlugin({ filename: './styles/style.css', disable: false, allChunks: true }),
+
+    new ExtractTextPlugin({
+      filename: './styles/style.css',
+      disable: false,
+      allChunks: true
+    }),
+
     new webpack.HotModuleReplacementPlugin(),
+
     new HtmlWebpackPlugin({
-      template: `${__dirname}/src/index.html`,
+      template: resolve(baseDir, 'src', 'index.html'),
       filename: 'index.html',
-      favicon: resolve(__dirname, 'assets/img/favicon.png'),
+      favicon: resolve(baseDir, 'assets', 'img', 'favicon.png'),
       inject: 'body'
     }),
+
     new webpack.DefinePlugin({
       API_HOST: JSON.stringify('http://localhost:3000')
     })
