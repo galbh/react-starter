@@ -6,18 +6,20 @@ import { Toolbar, Icon, IconButton } from '@material-ui/core';
 import styles from './header.component.scss';
 import userModel from '../../../common/state/auth/auth.models';
 
-const HeaderComponent = ({ openDrawer, loggedInUser, title, t }) => (
+const HeaderComponent = ({
+  openDrawer, loggedInUser, title, t
+}) => (
   <div>
     <AppBar position="static" className={styles.header}>
       <Toolbar>
         <IconButton onClick={openDrawer} className="hamburger">
           <Icon>menu</Icon>
         </IconButton>
-        <div className={styles.title} style={{flexGrow: 1}}>{t(title)}</div>
+        <div className={styles.title} style={{ flexGrow: 1 }}>{t(title)}</div>
         {
           loggedInUser &&
           <div>{loggedInUser.firstName} {loggedInUser.lastName}</div>
-        }        
+        }
       </Toolbar>
     </AppBar>
   </div>

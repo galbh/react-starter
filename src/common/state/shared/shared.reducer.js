@@ -13,7 +13,7 @@ function sharedReducer (state = sharedState, action) {
       return { ...state, language: action.payload };
 
     case SET_TITLE:
-      return { ...state, title: action.payload }
+      return { ...state, title: action.payload };
 
     default:
       return state;

@@ -4,7 +4,7 @@ const sharedState = {
   language: localStorage.i18nextLng || 'en-US',
   rtlLanguages: ['He'],
   isRtl () { return this.rtlLanguages.indexOf(this.language) > -1; },
-  title: '',
+  title: ''
 };
 
 export default sharedState;

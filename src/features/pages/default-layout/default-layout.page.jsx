@@ -7,7 +7,9 @@ import HeaderComponent from '../../components/header/header.component.jsx';
 import userModel from '../../../common/state/auth/auth.models';
 import { OpenDrawerAction } from '../../../common/state/drawer/drawer.actions';
 
-const DefaultLayout = ({ loggedInUser, path, component, openDrawer, title }) => {  
+const DefaultLayout = ({
+  loggedInUser, path, component, openDrawer, title
+}) => {
   const Component = component;
 
   return (

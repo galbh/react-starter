@@ -22,7 +22,7 @@ export function SetTitleAction (pathLocation) {
   return {
     type: SET_TITLE,
     payload: urlTitleDictionary[pathLocation] || ''
-  }
+  };
 }
 
 export function ChangeLanguageAction (language) {

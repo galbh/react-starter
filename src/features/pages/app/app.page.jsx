@@ -32,12 +32,14 @@ class App extends Component {
   }
 
   initiateData () {
-    const { startLoader, stopLoader, fetchLoggedInUser, openDialog } = this.props;
-    
+    const {
+      startLoader, stopLoader, fetchLoggedInUser, openDialog
+    } = this.props;
+
     startLoader();
     fetchLoggedInUser()
       .then(() => stopLoader())
-      .then(() => openDialog('react starter', 'hello from app.page.jsx'))
+      .then(() => openDialog('react starter', 'hello from app.page.jsx'));
   }
 
   render () {
