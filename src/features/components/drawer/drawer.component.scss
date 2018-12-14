@@ -65,14 +65,14 @@ $drawer-bg-color: rgba(232, 212, 212, 0.58);
     }    
 
     .active > li{
-      background: $bg-secondary;
+      background: $secondary-background-color;
       color: $primary-selected-text-color;
       font-weight: bold;
     }
   }
 
   .listItem.selected{
-    background: $text-color-dimmed;
+    background: $selected-item-background-color;
   }
 
 }

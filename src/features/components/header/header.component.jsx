@@ -26,7 +26,8 @@ const HeaderComponent = ({ openDrawer, loggedInUser, title, t }) => (
 HeaderComponent.propTypes = {
   openDrawer: PropTypes.func.isRequired,
   loggedInUser: PropTypes.shape(userModel),
-  title: PropTypes.string
+  title: PropTypes.string,
+  t: PropTypes.func.isRequired
 };
 
 HeaderComponent.defaultProps = { loggedInUser: null, title: '' };
