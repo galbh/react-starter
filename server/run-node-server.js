@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const http = require('http');
-const cors = require('cors');
 const bodyParser = require('body-parser');
 const api = require('./routes/api');
 
@@ -9,7 +8,6 @@ const app = express();
 
 const baseDir = path.resolve(__dirname, '../');
 
-app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 

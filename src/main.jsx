@@ -5,8 +5,6 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
-import 'react-sortable-tree/style.css';
-
 import Routes from './routes.jsx';
 import rootReducer from './common/reducers';
 

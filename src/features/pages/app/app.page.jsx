@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './app.page.scss';
@@ -117,14 +118,14 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    openDialog: (title, component) => dispatch(new OpenDialogAction(title, component)),
-    closeDialog: (title, component) => dispatch(new CloseDialogAction()),
-    closeDrawer: (title, component) => dispatch(new CloseDrawerAction()),
-    changeLanguage: lang => dispatch(new ChangeLanguageAction(lang)),
-    fetchLoggedInUser: () => dispatch(new FetchLoggedInUserAction()),
-    startLoader: () => dispatch(new StartLoaderAction()),
-    stopLoader: () => dispatch(new StopLoaderAction()),
-    setTitle: title => dispatch(new SetTitleAction(title))
+    openDialog: bindActionCreators(OpenDialogAction, dispatch),
+    closeDialog: bindActionCreators(CloseDialogAction, dispatch),
+    closeDrawer: bindActionCreators(CloseDrawerAction, dispatch),
+    changeLanguage: bindActionCreators(ChangeLanguageAction, dispatch),
+    fetchLoggedInUser: bindActionCreators(FetchLoggedInUserAction, dispatch),
+    startLoader: bindActionCreators(StartLoaderAction, dispatch),
+    stopLoader: bindActionCreators(StopLoaderAction, dispatch),
+    setTitle: bindActionCreators(SetTitleAction, dispatch)
   };
 }
 
