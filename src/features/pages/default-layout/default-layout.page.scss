@@ -1,4 +1,6 @@
 @import '../../../../assets/scss/variables.scss';
 .wrapper{
   padding: $frame-padding;
+  overflow: auto;
+  height: calc(100vh - 124px);
 }

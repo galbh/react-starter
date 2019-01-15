@@ -18,7 +18,7 @@ const HeaderComponent = ({
         <div className={styles.title} style={{ flexGrow: 1 }}>{t(title)}</div>
         {
           loggedInUser &&
-          <div>{loggedInUser.firstName} {loggedInUser.lastName}</div>
+          <div>{loggedInUser.username}</div>
         }
       </Toolbar>
     </AppBar>
