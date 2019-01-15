@@ -15,6 +15,7 @@ class HttpService {
       credentials: 'same-origin',
       body
     }).then((res) => {
+      // handle success
       if (res.ok) {
         return res.text().then((text) => {
           if (text && this.isValidJsonString(text)) {
@@ -23,7 +24,13 @@ class HttpService {
           return text;
         });
       }
-      throw new Error(res.statusText);
+      // handle error
+      return res.text().then((text) => {
+        if (text && this.isValidJsonString(text)) {
+          throw new Error(JSON.parse(text));
+        }
+        throw new Error(text);
+      });
     });
   }
   isValidJsonString (string) {

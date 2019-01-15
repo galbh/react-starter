@@ -21,7 +21,7 @@ export default function createAsyncAction (type, fn, disableLoader) {
         payload: error
       });
       dispatch(new StopLoaderAction());
-      dispatch(new OpenDialogAction('error', `${error.message} ${type}`));
+      dispatch(new OpenDialogAction('error', error.message));
       throw error;
     }
     // dispatch success action
