@@ -3,7 +3,7 @@ import XHR from 'i18next-xhr-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
 /* eslint-disable */
-import resBundle from 'i18next-resource-store-loader!../assets/locale/index.js';
+import resBundle from 'i18next-resource-store-loader!./assets/locale/index.js';
 /* eslint-disable */
 
 i18n

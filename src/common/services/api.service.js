@@ -1,4 +1,4 @@
-import endpoints from '../../../server/endpoints.js';
+import endpoints from '../../server/endpoints.js';
 
 class ApiService {
   getOptions (key) {

@@ -1,16 +1,14 @@
 import React from 'react';
-import propTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import styles from './home.page.scss';
 
-const HomePage = ({ t }) => (
-  <div className={styles.homePage}>
-    {t('HOME_PAGE')}
-  </div>
-);
-
-HomePage.propTypes = {
-  t: propTypes.func.isRequired
+const HomePage = () => {
+  const [t] = useTranslation();
+  return (
+    <div className={styles.homePage}>
+      {t('HOME_PAGE')}
+    </div>
+  );
 };
 
-export default translate()(HomePage);
+export default HomePage;

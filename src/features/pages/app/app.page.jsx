@@ -10,7 +10,12 @@ import DrawerComponent from '../../components/drawer/drawer.component.jsx';
 import { OpenDialogAction, CloseDialogAction } from '../../../common/state/dialog/dialog.actions';
 import { ROUTES } from '../../../common/constants';
 import { CloseDrawerAction } from '../../../common/state/drawer/drawer.actions';
-import { ChangeLanguageAction, StartLoaderAction, StopLoaderAction, SetTitleAction } from '../../../common/state/shared/shared.actions';
+import {
+  ChangeLanguageAction,
+  StartLoaderAction,
+  StopLoaderAction,
+  SetTitleAction
+} from '../../../common/state/shared/shared.actions';
 import { FetchLoggedInUserAction } from '../../../common/state/auth/auth.actions';
 
 class App extends Component {
@@ -29,7 +34,8 @@ class App extends Component {
   }
 
   onChangeLanguage (language) {
-    this.props.changeLanguage(language);
+    const { changeLanguage } = this.props;
+    changeLanguage(language);
   }
 
   initiateData () {
