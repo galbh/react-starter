@@ -18,6 +18,7 @@ module.exports = {
     },
     "plugins": [ "react" ],
     "rules": {
+      "linebreak-style": [0, "error", "windows"],
       "class-methods-use-this": 0,
       "import/extensions": 0,
       "jsx-a11y/label-has-for": [ 2, {

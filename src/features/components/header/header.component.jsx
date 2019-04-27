@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
 import { useTranslation } from 'react-i18next';
 import { Toolbar, IconButton } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import styles from './header.module.scss';
 import userModel from '../../../common/state/auth/auth.models';
+
+import Header from './styles';
 
 const HeaderComponent = ({
   openDrawer,
@@ -15,18 +15,18 @@ const HeaderComponent = ({
   const [t] = useTranslation();
   return (
     <div>
-      <AppBar position="static" className={styles.header}>
+      <Header position="static">
         <Toolbar>
           <IconButton onClick={openDrawer} className="hamburger">
             <MenuIcon />
           </IconButton>
-          <div className={styles.title} style={{ flexGrow: 1 }}>{t(title)}</div>
+          <div style={{ flexGrow: 1 }}>{t(title)}</div>
           {
             loggedInUser &&
             <div>{loggedInUser.username}</div>
           }
         </Toolbar>
-      </AppBar>
+      </Header>
     </div>
   );
 };
