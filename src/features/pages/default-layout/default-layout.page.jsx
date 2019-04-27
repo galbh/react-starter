@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import styles from './default-layout.page.scss';
+import styles from './default-layout.module.scss';
 import HeaderComponent from '../../components/header/header.component.jsx';
 import userModel from '../../../common/state/auth/auth.models';
 import { OpenDrawerAction } from '../../../common/state/drawer/drawer.actions';

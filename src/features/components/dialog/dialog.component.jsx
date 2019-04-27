@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Dialog from '@material-ui/core/Dialog';
 import { DialogTitle, DialogContent } from '@material-ui/core';
-import styles from './dialog.component.scss';
+import styles from './dialog.module.scss';
 
 const DialogComponent = ({
   component, title, closeDialog, open, isRtl

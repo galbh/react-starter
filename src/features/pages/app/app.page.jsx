@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import styles from './app.page.scss';
 import SpinnerComponent from '../../components/spinner/spinner.component.jsx';
 import DialogComponent from '../../components/dialog/dialog.component.jsx';
 import DrawerComponent from '../../components/drawer/drawer.component.jsx';
@@ -56,10 +55,7 @@ class App extends Component {
     } = this.props;
 
     return (
-      <div
-        dir={isRtl ? 'rtl' : 'ltr'}
-        className={styles.container}
-      >
+      <div dir={isRtl ? 'rtl' : 'ltr'}>
         {/* Loader */}
         {loading && <SpinnerComponent />}
 
@@ -90,7 +86,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  loading: PropTypes.bool.isRequired,
+  loading: PropTypes.bool,
   children: PropTypes.element.isRequired,
   isDialogRender: PropTypes.bool.isRequired,
   dialogComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
@@ -104,6 +100,7 @@ App.propTypes = {
 };
 
 App.defaultProps = {
+  loading: true,
   dialogComponent: '',
   dialogType: null
 };

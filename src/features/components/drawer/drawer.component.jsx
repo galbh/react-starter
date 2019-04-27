@@ -11,7 +11,7 @@ import {
   ExpansionPanelSummary
 } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
-import styles from './drawer.component.scss';
+import styles from './drawer.module.scss';
 import { ROUTES } from '../../../common/constants';
 import LogoComponent from '../logo/logo.component.jsx';
 import ImgSrc from '../../../assets/img/logo.png';

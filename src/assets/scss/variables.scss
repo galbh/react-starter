@@ -1,4 +1,3 @@
-// colors
 $primary-background-color: #ce1026;
 $secondary-background-color: #f8f9fd;
 $primary-selected-text-color: #fff;
@@ -18,13 +17,11 @@ $complete-color: #3ac187;
 $in-progress-color: #c4c5c6;
 $skipped-color: rgba(0, 0, 0, 0.54);
 
-// screen sizes
 $mobile-width: 1023px;
 $tablet-width: 960px;
 $min-screen-height: 598px;
 $default-icon-width: 22px;
 
-// fonts
 $font-size-regular: 12px;
 $font-size-medium: 14px;
 $font-size-extra-medium: 13px;
@@ -36,7 +33,6 @@ $primary-font-family: 'OpenSans';
 $icon-font-family: 'vpp-icons';
 $material-icons-font-family: 'Material Icons';
 
-// spacing
 $frame-padding: 32px;
 $item-padding: 10px;
 $page-padding: 0 32px 33px 32px;
@@ -46,6 +42,5 @@ $list-item-padding: 24px;
 $small-padding: 16px;
 $extra-small-padding: 8px;
 
-// others
 $border-radius: 2px;
 $transition-rate: 0.8s;
