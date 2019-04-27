@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import SpinnerComponent from '../../components/spinner/spinner.component.jsx';
 import DialogComponent from '../../components/dialog/dialog.component.jsx';
@@ -39,13 +40,13 @@ class App extends Component {
 
   initiateData () {
     const {
-      startLoader, stopLoader, fetchLoggedInUser, openDialog
+      startLoader, stopLoader, fetchLoggedInUser, openDialog, t
     } = this.props;
 
     startLoader();
     fetchLoggedInUser()
       .then(() => stopLoader())
-      .then(() => openDialog('react starter', 'hello from app.page.jsx'));
+      .then(() => openDialog(t('WELCOME_TITLE'), t('WELCOME_MESSAGE')));
   }
 
   render () {
@@ -56,6 +57,7 @@ class App extends Component {
 
     return (
       <div dir={isRtl ? 'rtl' : 'ltr'}>
+
         {/* Loader */}
         {loading && <SpinnerComponent />}
 
@@ -69,16 +71,17 @@ class App extends Component {
           type={dialogType}
           closeDialog={closeDialog}
           component={dialogComponent || ''}
+          isRtl={isRtl}
         />
 
         {/* Drawer menu */}
         <DrawerComponent
           open={isDrawerRender}
-          isRtl={isRtl}
           languages={languages}
           language={language}
           closeDrawer={closeDrawer}
           onChangeLanguage={changeLanguage}
+          isRtl={isRtl}
         />
       </div>
     );
@@ -93,9 +96,9 @@ App.propTypes = {
   dialogTitle: PropTypes.string.isRequired,
   dialogType: PropTypes.string,
   isDrawerRender: PropTypes.bool.isRequired,
-  isRtl: PropTypes.bool.isRequired,
   languages: PropTypes.shape({ [PropTypes.string]: PropTypes.string }).isRequired,
   language: PropTypes.string.isRequired,
+  isRtl: PropTypes.bool.isRequired,
   history: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
 };
 
@@ -132,4 +135,4 @@ function mapDispatchToProps (dispatch) {
   };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(App)));

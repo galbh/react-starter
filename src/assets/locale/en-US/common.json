@@ -1,6 +1,8 @@
 {
-  "HOME_PAGE": "home page",
-  "ABOUT_PAGE": "about page",
+  "WELCOME_TITLE": "react starter",
+  "WELCOME_MESSAGE": "hello from app.page.jsx",
+  "HOME_PAGE": "home",
+  "ABOUT_PAGE": "about",
   "LANGUAGES": "langauges",
   "HOME_PAGE_TITLE": "home page title",
   "ABOUT_PAGE_TITLE": "about page title"

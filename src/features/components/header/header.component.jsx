@@ -5,7 +5,7 @@ import { Toolbar, IconButton } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import userModel from '../../../common/state/auth/auth.models';
 
-import Header from './styles';
+import { Header, Title } from './styles';
 
 const HeaderComponent = ({
   openDrawer,
@@ -20,7 +20,7 @@ const HeaderComponent = ({
           <IconButton onClick={openDrawer} className="hamburger">
             <MenuIcon />
           </IconButton>
-          <div style={{ flexGrow: 1 }}>{t(title)}</div>
+          <Title>{t(title)}</Title>
           {
             loggedInUser &&
             <div>{loggedInUser.username}</div>

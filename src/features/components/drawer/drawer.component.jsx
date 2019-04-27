@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import HomeIcon from '@material-ui/icons/Home';
+import DashboardIcon from '@material-ui/icons/Dashboard';
 import {
-  Drawer,
   MenuItem,
   ExpansionPanel,
   ListItemText,
@@ -14,7 +15,7 @@ import { NavLink } from 'react-router-dom';
 import styles from './drawer.module.scss';
 import { ROUTES } from '../../../common/constants';
 import LogoComponent from '../logo/logo.component.jsx';
-import ImgSrc from '../../../assets/img/logo.png';
+import { StyledDrawer, Wrapper, Logo } from './styles';
 
 const DrawerComponent = ({
   closeDrawer,
@@ -26,27 +27,26 @@ const DrawerComponent = ({
 }) => {
   const [t] = useTranslation();
   return (
-    <Drawer
+    <StyledDrawer
       open={open}
-      className={styles.container}
       variant="temporary"
       anchor={isRtl ? 'right' : 'left'}
       onClose={closeDrawer}
     >
-      <div className={isRtl ? `${styles.rtl} ${styles.drawer}` : styles.drawer}>
+      <Wrapper className={isRtl ? `${styles.rtl} ${styles.drawer}` : styles.drawer}>
 
-        <div className={styles.logo}><LogoComponent /></div>
+        <Logo><LogoComponent /></Logo>
 
         <DrawerLink
           to={ROUTES.home}
-          iconSrc={ImgSrc}
+          icon={<HomeIcon />}
           label={t('HOME_PAGE')}
           closeDrawer={closeDrawer}
         />
 
         <DrawerLink
           to={ROUTES.about}
-          iconSrc={ImgSrc}
+          icon={<DashboardIcon />}
           label={t('ABOUT_PAGE')}
           closeDrawer={closeDrawer}
         />
@@ -73,20 +73,21 @@ const DrawerComponent = ({
           </List>
         </ExpansionPanel>
 
-      </div>
-    </Drawer>
+      </Wrapper>
+    </StyledDrawer>
   );
 };
 
 const DrawerLink = ({
-  closeDrawer, iconSrc, label, to
+  closeDrawer, iconSrc, label, to, icon
 }) => (
   <NavLink
     activeClassName={styles.active}
     to={to}
   >
     <MenuItem onClick={() => closeDrawer()}>
-      <img className={styles.icon} src={iconSrc} alt={`${label} link`} />
+      { icon }
+      { !icon && iconSrc && <img className={styles.icon} src={iconSrc} alt={`${label} link`} /> }
       <span>{label}</span>
     </MenuItem>
   </NavLink>
@@ -94,9 +95,15 @@ const DrawerLink = ({
 
 DrawerLink.propTypes = {
   to: PropTypes.string.isRequired,
-  iconSrc: PropTypes.string.isRequired,
+  iconSrc: PropTypes.string,
+  icon: PropTypes.element,
   label: PropTypes.string.isRequired,
   closeDrawer: PropTypes.func.isRequired
+};
+
+DrawerLink.defaultProps = {
+  iconSrc: null,
+  icon: null
 };
 
 DrawerComponent.propTypes = {
