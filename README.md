@@ -19,12 +19,7 @@ Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 The page will reload if you make edits.<br>
 
 ### `npm test`
-runs karma with --single-run for production CI environment.
-In order to run tests in development with watch configuration:
-1. npm install -g karma-cli
-2. npm run test:local
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](#running-tests) for more information.
+npm run test -- --watchAll
 
 ### `npm run build`
 
