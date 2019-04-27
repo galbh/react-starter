@@ -1,7 +1,8 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { mount } from 'enzyme';
+import { I18nextProvider } from 'react-i18next';
+import i18n from '../../../i18nForTest';
 import HeaderComponent from './header.component.jsx';
-import i18n from '../../../../config/i18n';
 
 describe('HeaderComponent', () => {
   let wrapper;
@@ -9,7 +10,9 @@ describe('HeaderComponent', () => {
 
   beforeEach(() => {
     const component = (
-      <HeaderComponent i18n={i18n} title="test" openDrawer={openDrawer} />
+      <I18nextProvider i18n={i18n}>
+        <HeaderComponent title="test" openDrawer={openDrawer} />
+      </I18nextProvider>
     );
     wrapper = mount(component);
   });

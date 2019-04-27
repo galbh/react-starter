@@ -1,2 +1,7 @@
-export { ENcommon } from './en-US/common.json'; // eslint-disable-line import/prefer-default-export
-export { HEcommon } from './He/common.json'; // eslint-disable-line import/prefer-default-export
+import * as ENcommon from './en-US/common.json';
+import * as HEcommon from './He/common.json';
+
+export default {
+  ENcommon,
+  HEcommon
+};
