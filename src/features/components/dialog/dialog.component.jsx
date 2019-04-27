@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Dialog from '@material-ui/core/Dialog';
 import { DialogTitle, DialogContent } from '@material-ui/core';
-import styles from './dialog.module.scss';
 
 const DialogComponent = ({
   component, title, closeDialog, open, isRtl
@@ -11,13 +10,9 @@ const DialogComponent = ({
     style={isRtl ? { direction: 'rtl' } : null}
     open={open}
     onClose={() => closeDialog()}
-    className={styles.dialog}
   >
-    <DialogTitle className={styles.title}>{title}</DialogTitle>
-
-    <DialogContent className={styles.content}>
-      {component}
-    </DialogContent>
+    <DialogTitle>{title}</DialogTitle>
+    <DialogContent>{component}</DialogContent>
   </Dialog>
 );
 

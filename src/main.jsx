@@ -8,9 +8,12 @@ import logger from 'redux-logger';
 import Routes from './routes.jsx';
 import rootReducer from './common/reducers';
 
+import * as serviceWorker from './serviceWorker';
+
 let middlewares;
 
 if (process.env.NODE_ENV === 'production') {
+  serviceWorker.register();
   middlewares = applyMiddleware(thunk);
 } else {
   middlewares = applyMiddleware(thunk, logger);

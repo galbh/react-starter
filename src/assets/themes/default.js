@@ -3,7 +3,8 @@ export default {
   secondary_background_color: '#ce1026',
   primary_text_color: '#444444',
   secondary_text_color: '#888888',
+  primary_selected_text_color: '#fff',
   primary_icon_color: '#cccccc',
   primary_dark: '#40414b',
-  rtl: true
+  frame_padding: '32px'
 };

@@ -7,7 +7,9 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "test:local": "npm run test -- --watchAll",
-    "test:ci": "set CI=true && npm test"
+    "test:ci": "set CI=true && npm test",
+    "serve": "npm run build && serve -s build",
+    "preinstall": "npm install -g serve"
   },
   "dependencies": {
     "@babel/core": "7.4.3",

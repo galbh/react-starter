@@ -12,10 +12,14 @@ import {
   ExpansionPanelSummary
 } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
-import styles from './drawer.module.scss';
 import { ROUTES } from '../../../common/constants';
 import LogoComponent from '../logo/logo.component.jsx';
-import { StyledDrawer, Wrapper, Logo } from './styles';
+import {
+  StyledDrawer,
+  WrapperRtl,
+  Wrapper,
+  Logo
+} from './styles';
 
 const DrawerComponent = ({
   closeDrawer,
@@ -26,6 +30,7 @@ const DrawerComponent = ({
   isRtl
 }) => {
   const [t] = useTranslation();
+  const Container = isRtl ? WrapperRtl : Wrapper;
   return (
     <StyledDrawer
       open={open}
@@ -33,7 +38,7 @@ const DrawerComponent = ({
       anchor={isRtl ? 'right' : 'left'}
       onClose={closeDrawer}
     >
-      <Wrapper className={isRtl ? `${styles.rtl} ${styles.drawer}` : styles.drawer}>
+      <Container>
 
         <Logo><LogoComponent /></Logo>
 
@@ -60,10 +65,7 @@ const DrawerComponent = ({
                 <ListItem
                   key={l}
                   button
-                  className={language === languages[l]
-                    ? `${styles.selected} ${styles.listItem}`
-                    : styles.listItem
-                  }
+                  className={language === languages[l] ? 'selected' : null}
                   onClick={() => onChangeLanguage(languages[l])}
                 >
                   <ListItemText primary={l} />
@@ -73,7 +75,7 @@ const DrawerComponent = ({
           </List>
         </ExpansionPanel>
 
-      </Wrapper>
+      </Container>
     </StyledDrawer>
   );
 };
@@ -82,12 +84,12 @@ const DrawerLink = ({
   closeDrawer, iconSrc, label, to, icon
 }) => (
   <NavLink
-    activeClassName={styles.active}
+    activeClassName="active"
     to={to}
   >
     <MenuItem onClick={() => closeDrawer()}>
       { icon }
-      { !icon && iconSrc && <img className={styles.icon} src={iconSrc} alt={`${label} link`} /> }
+      { !icon && iconSrc && <img src={iconSrc} alt={`${label} link`} /> }
       <span>{label}</span>
     </MenuItem>
   </NavLink>
