@@ -1,4 +1,4 @@
-import i18n from '../../../../config/i18n';
+import i18n from '../../../i18n';
 import urlTitleDictionary from './url-title-dictionary.json';
 
 export const LOADING_START = 'LOADING_START';

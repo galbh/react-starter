@@ -33,6 +33,7 @@ class HttpService {
       });
     });
   }
+
   isValidJsonString (string) {
     /* eslint-disable */
     return /^[\],:{}\s]*$/.test(string.replace(/\\["\\\/bfnrtu]/g, '@')

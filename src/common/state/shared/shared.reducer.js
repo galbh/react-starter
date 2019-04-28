@@ -1,5 +1,10 @@
 import sharedState from './shared.state';
-import { LOADING_START, LOADING_DONE, CHANGE_LANGUAGE, SET_TITLE } from './shared.actions';
+import {
+  LOADING_START,
+  LOADING_DONE,
+  CHANGE_LANGUAGE,
+  SET_TITLE
+} from './shared.actions';
 
 function sharedReducer (state = sharedState, action) {
   switch (action.type) {

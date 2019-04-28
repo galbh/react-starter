@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LogoSrc from '../../../../assets/img/logo.png';
-import styles from './logo.component.scss';
+import LogoSrc from '../../../assets/img/logo.png';
+import Logo from './styles';
 
 const LogoComponent = ({ onClick }) => (
-  <div role="presentation" className={styles.logo} onClick={onClick}>
-    <img src={LogoSrc} alt="solar edge logo" />
-  </div>
+  <Logo role="presentation" onClick={onClick}>
+    <img src={LogoSrc} alt="logo" />
+  </Logo>
 );
 
 LogoComponent.propTypes = {

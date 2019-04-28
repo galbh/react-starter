@@ -2,15 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
-import styles from './app.page.scss';
 import SpinnerComponent from '../../components/spinner/spinner.component.jsx';
 import DialogComponent from '../../components/dialog/dialog.component.jsx';
 import DrawerComponent from '../../components/drawer/drawer.component.jsx';
 import { OpenDialogAction, CloseDialogAction } from '../../../common/state/dialog/dialog.actions';
 import { ROUTES } from '../../../common/constants';
 import { CloseDrawerAction } from '../../../common/state/drawer/drawer.actions';
-import { ChangeLanguageAction, StartLoaderAction, StopLoaderAction, SetTitleAction } from '../../../common/state/shared/shared.actions';
+import {
+  ChangeLanguageAction,
+  StartLoaderAction,
+  StopLoaderAction,
+  SetTitleAction
+} from '../../../common/state/shared/shared.actions';
 import { FetchLoggedInUserAction } from '../../../common/state/auth/auth.actions';
 
 class App extends Component {
@@ -29,18 +34,19 @@ class App extends Component {
   }
 
   onChangeLanguage (language) {
-    this.props.changeLanguage(language);
+    const { changeLanguage } = this.props;
+    changeLanguage(language);
   }
 
   initiateData () {
     const {
-      startLoader, stopLoader, fetchLoggedInUser, openDialog
+      startLoader, stopLoader, fetchLoggedInUser, openDialog, t
     } = this.props;
 
     startLoader();
     fetchLoggedInUser()
       .then(() => stopLoader())
-      .then(() => openDialog('react starter', 'hello from app.page.jsx'));
+      .then(() => openDialog(t('WELCOME_TITLE'), t('WELCOME_MESSAGE')));
   }
 
   render () {
@@ -50,10 +56,8 @@ class App extends Component {
     } = this.props;
 
     return (
-      <div
-        dir={isRtl ? 'rtl' : 'ltr'}
-        className={styles.container}
-      >
+      <div dir={isRtl ? 'rtl' : 'ltr'}>
+
         {/* Loader */}
         {loading && <SpinnerComponent />}
 
@@ -67,16 +71,17 @@ class App extends Component {
           type={dialogType}
           closeDialog={closeDialog}
           component={dialogComponent || ''}
+          isRtl={isRtl}
         />
 
         {/* Drawer menu */}
         <DrawerComponent
           open={isDrawerRender}
-          isRtl={isRtl}
           languages={languages}
           language={language}
           closeDrawer={closeDrawer}
           onChangeLanguage={changeLanguage}
+          isRtl={isRtl}
         />
       </div>
     );
@@ -84,20 +89,21 @@ class App extends Component {
 }
 
 App.propTypes = {
-  loading: PropTypes.bool.isRequired,
+  loading: PropTypes.bool,
   children: PropTypes.element.isRequired,
   isDialogRender: PropTypes.bool.isRequired,
   dialogComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   dialogTitle: PropTypes.string.isRequired,
   dialogType: PropTypes.string,
   isDrawerRender: PropTypes.bool.isRequired,
-  isRtl: PropTypes.bool.isRequired,
   languages: PropTypes.shape({ [PropTypes.string]: PropTypes.string }).isRequired,
   language: PropTypes.string.isRequired,
+  isRtl: PropTypes.bool.isRequired,
   history: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
 };
 
 App.defaultProps = {
+  loading: true,
   dialogComponent: '',
   dialogType: null
 };
@@ -129,4 +135,4 @@ function mapDispatchToProps (dispatch) {
   };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(App)));

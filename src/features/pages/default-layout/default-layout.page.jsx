@@ -2,10 +2,10 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import styles from './default-layout.page.scss';
 import HeaderComponent from '../../components/header/header.component.jsx';
 import userModel from '../../../common/state/auth/auth.models';
 import { OpenDrawerAction } from '../../../common/state/drawer/drawer.actions';
+import Container from './styles';
 
 const DefaultLayout = ({
   loggedInUser, path, component, openDrawer, title
@@ -16,18 +16,14 @@ const DefaultLayout = ({
     <Route
       path={path}
       render={matchProps => (
-
-        <div className={styles.container}>
+        <div>
           <HeaderComponent
             path={path}
             openDrawer={openDrawer}
             loggedInUser={loggedInUser}
             title={title}
           />
-
-          <div className={styles.wrapper}>
-            <Component {...matchProps} />
-          </div>
+          <Container><Component {...matchProps} /></Container>
         </div>
 
       )}
